@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" routerLink="/home">Tech Store</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/signin">Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/signup">Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()">Logout</a>
+      </li>
+      <li (click)="expand()" [class]="dropdownLi">
+        <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Store</a>
+        <div [class]="dropdownMenu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" routerLink="/tech/products">All Products</a>
+          <a class="dropdown-item" routerLink="/tech/categories">All Categories</a>
+          <a class="dropdown-item" routerLink="/tech/cart">My Furniture</a>
+
+        </div>
+      </li>
+      <li (click)="expand2()" [class]="dropdownLi2">
+        <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+        <div [class]="dropdownMenu2" aria-labelledby="dropdown02">
+          <a class="dropdown-item" routerLink="/tech/products/create">Create Product</a>
+          <a class="dropdown-item" routerLink="/tech/products/create">Create Category</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
