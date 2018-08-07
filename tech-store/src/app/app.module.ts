@@ -1,32 +1,45 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
-//import { ToastrModule } from 'ngx-toastr';
-//import { ServiceModule } from "./core/services/services.module";
-//import { GuardsModule } from './core/guards/guards.module';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SharedModule } from './components/shared/shared.module';
+import { AuthModule } from './components/authentication/auth.module';
+import { AppRoutingModule } from './app.routing';
+import { ProductsModule } from './components/products/products.module';
 
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { CategoriesComponent } from './components/categories/categories/categories.component';
 
-import { routes } from './app.routing';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CategoriesComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
+    FormsModule,
     HttpClientModule,
-    //ToastrModule.forRoot(),
-    RouterModule.forRoot(routes),
-    //ServiceModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    AppRoutingModule,
     SharedModule,
-    //GuardsModule
+    AuthModule,
+    ProductsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

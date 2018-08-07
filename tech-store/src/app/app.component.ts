@@ -7,14 +7,12 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  title = 'app';
+
   ngOnInit(): void {
     firebase.initializeApp({
       apiKey: 'AIzaSyBLmEjNNlSANh0UjpJfu16gol4nfuBf9gw',
-      authDomain: "techstore-e9877.firebaseapp.com",
-      databaseURL: "https://techstore-e9877.firebaseio.com",
-      projectId: "techstore-e9877",
-      storageBucket: "techstore-e9877.appspot.com",
-      messagingSenderId: "1035920129464"
+      authDomain: "techstore-e9877.firebaseapp.com"
     })
   }
 

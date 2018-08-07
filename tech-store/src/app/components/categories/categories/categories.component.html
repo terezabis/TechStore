@@ -1,0 +1,15 @@
+<h1>Categories</h1>
+<div *ngFor="let category of categories | async" class="col-xs-12 col-md-8 offset-md-2">
+  <div class="list-group-item">
+    <div class="row">
+      <div class="col-xs-12 col-md-10">
+        <h5 class="category-item">{{category}}</h5>
+      </div>
+      <div class="col-xs-12 col-md-2">
+        <a routerLink="/categories/{{category}}" class="clearfix">
+          <button class="action btn btn-info">Products</button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

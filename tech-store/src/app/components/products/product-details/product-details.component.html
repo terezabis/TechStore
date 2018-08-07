@@ -1,0 +1,38 @@
+<div *ngIf="product">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive" >
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <div class="row">
+            <div class="col-xs-12">
+              <h2>{{product.name}} - {{product.model}}</h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h4>{{product.price}} лв.</h4>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              {{product.description}}
+            </div>
+          </div>
+    </div>
+  </div>
+  
+  <div class="row list-group-item prod-control">
+    <div class="col-xs-12 offset-md-4 col-md-4">
+      <a routerLink="/products/edit/{{id}}" >
+        <button class="action btn btn-info">Edit</button>
+      </a>
+      <a routerLink="/products/buy/{{id}}" >
+        <button class="action btn btn-primary">Buy</button>
+      </a>
+      <a (click)="removeProduct()" >
+        <button class="action btn btn-danger">Delete</button>
+      </a>
+    </div>
+  </div>
+</div>

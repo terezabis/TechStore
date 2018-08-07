@@ -3,3 +3,6 @@ a.navbar-brand:link {
     color: whitesmoke;
 }
 
+.nav-item:hover {
+    cursor: pointer;
+}
