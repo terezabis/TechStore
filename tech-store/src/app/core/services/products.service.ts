@@ -38,7 +38,7 @@ export class ProductsService {
     return this.http.get<Product>(`${dbUrl}${productId}/.json`);
   }
 
-  createProduct(body : ProductInputModel) {
+  createProduct(body: ProductInputModel) {
     return this.http.post(`${dbUrl}.json`, body);
   }
 
@@ -48,6 +48,30 @@ export class ProductsService {
 
   deleteProduct(productId: string) {
     return this.http.delete(`${dbUrl}${productId}/.json`);
+  }
+
+  searchProducts(query: string) {
+    return this.http.get(`${dbUrl}.json`)
+      .pipe(map((res: Response) => {
+        const ids = Object.keys(res);
+        const products: Product[] = [];
+        for (const i of ids) {
+          if ((res[i].name).toLowerCase() === query ||
+            (res[i].model).toLowerCase() === query ||
+            (res[i].category).toLowerCase() === query ||
+            (res[i].description).toLowerCase() === query) {
+            products.push(new Product(
+              i,
+              res[i].name,
+              res[i].model,
+              res[i].image,
+              res[i].description,
+              res[i].price,
+              res[i].category));
+          }
+        }
+        return products;
+      }));
   }
 
   getCategories() {

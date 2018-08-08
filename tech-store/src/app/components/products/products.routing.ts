@@ -5,12 +5,15 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
 import { AuthGuard } from '../../core/guards/auth.guard';
+import { ProductsSearchComponent } from './products-search/products-search.component';
 
 const routes: Route[] = [
     { path: '', pathMatch: 'full', component: ProductsComponent, canActivate: [AuthGuard] },
     { path: 'create', component: ProductCreateComponent },
     { path: 'details/:id', component: ProductDetailsComponent },
-    { path: 'edit/:id', component: ProductEditComponent }
+    { path: 'edit/:id', component: ProductEditComponent },
+    { path: 'search', component: ProductsSearchComponent}
+  
 ]
 
 @NgModule({

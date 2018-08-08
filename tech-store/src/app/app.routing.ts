@@ -7,6 +7,7 @@ import { ProductsModule } from './components/products/products.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { CategoriesComponent } from './components/categories/categories/categories.component';
 import { ProductsByCategoryComponent } from './components/products/products-by-category/products-by-category.component';
+import { ProductsSearchComponent } from './components/products/products-search/products-search.component';
 
 const routes: Route[] = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,7 +16,6 @@ const routes: Route[] = [
   { path: 'signup', component: SignupComponent },
   { path: 'categories', component: CategoriesComponent, canActivate: [AuthGuard] },
   { path: 'categories/:name', component: ProductsByCategoryComponent, canActivate: [AuthGuard] },
-
   {
     path: 'products',
     loadChildren: () => ProductsModule,

@@ -1,0 +1,26 @@
+img {
+    height: 100px;
+    width: 100px;
+    padding: 3px;
+}
+
+a button {
+    cursor: pointer;
+}
+
+.prod-control button {
+    margin: 2px;
+    padding: 1px 5px 1px 5px !important;
+}
+
+.products-item {
+    display: inline-block;
+    margin: 5px;
+    width: 220px;
+    height: 300px;
+}
+
+.search-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

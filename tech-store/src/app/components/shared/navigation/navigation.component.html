@@ -18,7 +18,10 @@
       </li>
       <li *ngIf="authService.isAuthenticated()" class="nav-item">
         <a class="nav-link" routerLink="/products">Products</a>
-      </li>      
+      </li>
+      <li *ngIf="authService.isAuthenticated()" class="nav-item">
+          <a class="nav-link" routerLink="/products/search">Search</a>
+        </li>      
       
       <li *ngIf="authService.isAuthenticated()" (click)="expand()" [class]="dropdownLi">
         <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
