@@ -42,6 +42,10 @@ export class ProductsService {
     return this.http.post(`${dbUrl}.json`, body);
   }
 
+  editProduct(body) {
+    return this.http.patch(`${dbUrl}.json`, body);
+  }
+
   deleteProduct(productId: string) {
     return this.http.delete(`${dbUrl}${productId}/.json`);
   }
