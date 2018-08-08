@@ -1,6 +1,5 @@
-export class Product {
+export class ProductInputModel {
     constructor(
-      public id : string,
       public name : string,
       public model : string,
       public image : string,

@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { productsComponent } from './index';
 import { ProductsRoutingModule } from "./products.routing";
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
@@ -13,6 +13,7 @@ import { ProductsByCategoryComponent } from './products-by-category/products-by-
     imports: [
       CommonModule,
       FormsModule,
+      ReactiveFormsModule,
       ProductsRoutingModule
     ]
   })

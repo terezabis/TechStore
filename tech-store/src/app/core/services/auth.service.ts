@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   token : string;
+  name : string;
 
   constructor(
     private toastr : ToastrService,
@@ -69,5 +70,12 @@ export class AuthService {
     return this.token != null;
   }
 
+  getUserNameFromEmail() {
+    let userEmail = firebase.auth().currentUser.email;
+    console.log(userEmail);
+    this.name = userEmail.substring(0, userEmail.lastIndexOf("@"));
+    console.log(this.name);
+    return this.name;
+  }
 
 }
