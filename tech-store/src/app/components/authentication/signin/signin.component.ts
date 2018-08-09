@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import { SignInInputModel } from '../../../core/models/authentication/signin.input.model';
 
 @Component({
   selector: 'app-signin',
@@ -8,16 +9,17 @@ import { AuthService } from '../../../core/services/auth.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+  model : SignInInputModel;
 
-  constructor(private authService : AuthService) { }
+  constructor(private authService : AuthService) { 
+    this.model = new SignInInputModel("", "");
+  }
 
   ngOnInit() {    
   }
 
-  signInn(form : NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    this.authService.signIn(email, password);
+  signInn() {
+    this.authService.signIn(this.model);
   }
 
 }

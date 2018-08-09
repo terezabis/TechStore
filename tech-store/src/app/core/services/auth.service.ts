@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { SignUpInputModel } from '../models/authentication/signup.input.model';
+import { SignInInputModel } from '../models/authentication/signin.input.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +17,9 @@ export class AuthService {
     private router : Router
   ) { }
 
-  signUp(email: string, password : string) {
+  signUp(body : SignUpInputModel) {
     firebase.auth()
-    .createUserWithEmailAndPassword(email, password)
+    .createUserWithEmailAndPassword(body.email, body.password)
       .then((data) => {
         this.toastr.success('Signed Up', 'Success');
         this.router.navigate(['/signin']);
@@ -27,9 +29,9 @@ export class AuthService {
       });
   }
 
-  signIn(email : string, password : string) {
+  signIn(body: SignInInputModel) {
     firebase.auth()
-      .signInWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(body.email, body.password)
       .then((data) => {
         firebase.auth()
           .currentUser

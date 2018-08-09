@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { SharedModule } from './components/shared/shared.module';
 import { AuthModule } from './components/authentication/auth.module';
@@ -25,6 +26,7 @@ import { CategoriesComponent } from './components/categories/categories/categori
   imports: [
   BrowserModule,
     FormsModule,
+    CustomFormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
