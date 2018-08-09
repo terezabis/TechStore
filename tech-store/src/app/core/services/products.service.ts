@@ -56,10 +56,10 @@ export class ProductsService {
         const ids = Object.keys(res);
         const products: Product[] = [];
         for (const i of ids) {
-          if ((res[i].name).toLowerCase() === query ||
-            (res[i].model).toLowerCase() === query ||
-            (res[i].category).toLowerCase() === query ||
-            (res[i].description).toLowerCase() === query) {
+          if ((res[i].name).toLowerCase().includes(query) ||
+            (res[i].model).toLowerCase().includes(query) ||
+            (res[i].category).toLowerCase().includes(query) ||
+            (res[i].description).toLowerCase().includes(query)) {
             products.push(new Product(
               i,
               res[i].name,

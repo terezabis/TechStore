@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../../../core/models/products/product.view.model';
 import { ProductsService } from './../../../core/services/products.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,8 @@ export class ProductDetailsComponent implements OnInit {
     private productsService : ProductsService,
     private route : ActivatedRoute,
     private toastr : ToastrService,
-    private router : Router
+    private router : Router,
+    private authService : AuthService
   ) { }
 
   ngOnInit() {

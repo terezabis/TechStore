@@ -9,17 +9,18 @@ import { SignInInputModel } from '../models/authentication/signin.input.model';
   providedIn: 'root'
 })
 export class AuthService {
-  token : string;
-  name : string;
+  token: string;
+  name: string;
+
 
   constructor(
-    private toastr : ToastrService,
-    private router : Router
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
-  signUp(body : SignUpInputModel) {
+  signUp(body: SignUpInputModel) {
     firebase.auth()
-    .createUserWithEmailAndPassword(body.email, body.password)
+      .createUserWithEmailAndPassword(body.email, body.password)
       .then((data) => {
         this.toastr.success('Signed Up', 'Success');
         this.router.navigate(['/signin']);
@@ -36,12 +37,12 @@ export class AuthService {
         firebase.auth()
           .currentUser
           .getIdToken()
-          .then((token : string) => {
+          .then((token: string) => {
             this.token = token;
           })
 
-          this.router.navigate(['/home']);
-          this.toastr.success('Logged In', 'Success');
+        this.router.navigate(['/home']);
+        this.toastr.success('Logged In', 'Success');
       })
       .catch((err) => {
         this.toastr.error(err.message, 'Warning');
@@ -59,18 +60,33 @@ export class AuthService {
 
   getToken() {
     firebase.auth()
-    .currentUser
-    .getIdToken()
-    .then((token : string) => {
-      this.token = token;
-    })
+      .currentUser
+      .getIdToken()
+      .then((token: string) => {
+        this.token = token;
+      })
 
     return this.token;
   }
 
-  isAuthenticated() : boolean {
+  isAuthenticated(): boolean {
     return this.token != null;
   }
+
+  isAdmin() {
+    let adminUids = ["vvQOPft74OQyALxXMNRu8xwzVwW2"];
+    if (firebase.auth().currentUser) {
+      let currentUserUid = firebase.auth().currentUser.uid;
+      if (adminUids.lastIndexOf(currentUserUid) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
 
   getUserNameFromEmail() {
     let userEmail = firebase.auth().currentUser.email;

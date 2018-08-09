@@ -3,31 +3,33 @@
   <div class="row form-group">
     <div class="col-xs-12 col-md-4">
       <div class="input-group form-group search-area">
-        <input autocomplete="off" required type="text" id="query" name="query" [(ngModel)]="query" class="form-control">
-        <button class="btn btn-primary" [disabled]="frm.invalid" type="submit">Search</button>
+        <input autocomplete="off" required  type="text" id="query" name="query" [(ngModel)]="query" class="form-control">
+        <button class="btn btn-primary" [disabled]="frm.invalid" type="submit">Search</button>        
       </div>
     </div>
-    
+
   </div>
 </form>
-<h3>Results for {{query}}</h3>
-<div class="row" *ngIf="products">
-  <div *ngFor="let product of products" class="col-xs-12">
-    <div class="products-item list-group-item">
-      <span class="pull-right">
-        <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
-      </span>
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">{{product.name}}</h4>
-        <h6 class="list-group-item-heading">{{product.model}}</h6>
-      </div>
-      <div class="list-group-item prod-control">
-        <a routerLink="/products/details/{{product.id}}" class="clearfix">
-          <button class="action btn btn-info">Details</button>
-        </a>
-        <a routerLink="/products/buy/{{product.id}}" class="clearfix">
-          <button class="action btn btn-primary">Buy</button>
-        </a>
+<div *ngIf="products">
+  <h3>Results for {{query}}</h3>
+  <div class="row">
+    <div *ngFor="let product of products" class="col-xs-12">
+      <div class="products-item list-group-item">
+        <span class="pull-right">
+          <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
+        </span>
+        <div class="pull-left">
+          <h4 class="list-group-item-heading">{{product.name}}</h4>
+          <h6 class="list-group-item-heading">{{product.model}}</h6>
+        </div>
+        <div class="list-group-item prod-control">
+          <a routerLink="/products/details/{{product.id}}" class="clearfix">
+            <button class="action btn btn-info">Details</button>
+          </a>
+          <a routerLink="/products/buy/{{product.id}}" class="clearfix">
+            <button class="action btn btn-primary">Buy</button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
