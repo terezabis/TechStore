@@ -1,6 +1,11 @@
 <h1>Items in category: {{name}}</h1>
+<app-back-button></app-back-button>
 <div class="row">
-  <div *ngFor="let product of products" class="col-xs-12">
+  <div *ngFor="let product of products | paginate: {
+    id: 'products-by-category',
+    itemsPerPage: pageSize,
+    currentPage: currentPage
+  }" class="col-xs-12">
     <div class="products-item list-group-item">
       <span class="pull-right">
         <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
@@ -20,3 +25,9 @@
     </div>
   </div>
 </div>
+<pagination-controls 
+id="products-by-category" 
+(pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true"
+  previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLAbel="page" screenReaderCurrentLabel="You're on page">
+
+</pagination-controls>

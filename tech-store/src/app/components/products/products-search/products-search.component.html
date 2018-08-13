@@ -13,7 +13,11 @@
 <div *ngIf="products">
   <h3>Results for {{query}}</h3>
   <div class="row">
-    <div *ngFor="let product of products" class="col-xs-12">
+    <div *ngFor="let product of products | paginate: {
+      id: 'products-search',
+      itemsPerPage: pageSize,
+      currentPage: currentPage
+    }" class="col-xs-12">
       <div class="products-item list-group-item">
         <span class="pull-right">
           <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
@@ -34,3 +38,9 @@
     </div>
   </div>
 </div>
+<pagination-controls 
+id="products-search" 
+(pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true"
+  previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLAbel="page" screenReaderCurrentLabel="You're on page">
+
+</pagination-controls>

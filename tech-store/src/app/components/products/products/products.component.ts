@@ -9,7 +9,9 @@ import { Product } from '../../../core/models/products/product.view.model';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  products : Observable<Product[]>
+  products : Observable<Product[]>; 
+  pageSize: number = 8;
+  currentPage: number = 1;
 
   constructor(
     private productsService : ProductsService
@@ -17,6 +19,10 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
      this.products = this.productsService.getProducts();
+  }
+
+  pageChanged(page) {
+    this.currentPage = page;
   }
 
 }

@@ -14,16 +14,19 @@ import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/categories/categories/categories.component';
+import { ButtonsModule } from './components/buttons/buttons.module';
+//import { BackButtonComponent } from './components/buttons/back-button/back-button.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    //BackButtonComponent
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
@@ -31,7 +34,8 @@ import { CategoriesComponent } from './components/categories/categories/categori
     AppRoutingModule,
     SharedModule,
     AuthModule,
-    ProductsModule
+    ProductsModule,
+    ButtonsModule
   ],
   providers: [
     {

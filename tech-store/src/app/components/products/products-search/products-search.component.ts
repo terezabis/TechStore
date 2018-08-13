@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 export class ProductsSearchComponent implements OnInit {
   products: Product[];
   query : string;
+  pageSize: number = 8;
+  currentPage: number = 1;
 
   constructor(
     private productsService : ProductsService,
@@ -31,6 +33,10 @@ export class ProductsSearchComponent implements OnInit {
       .subscribe(data => {
         this.products = data;
       });
+  }
+
+  pageChanged(page) {
+    this.currentPage = page;
   }
 
 }
