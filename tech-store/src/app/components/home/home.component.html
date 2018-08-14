@@ -1,1 +1,4 @@
-<h1>Welcome to the App</h1>
+<h1 *ngIf="authService.isAuthenticated()">Hello, {{userName}}!</h1>
+
+<h1>Welcome to the Tech Store!</h1>
+<img class="container-fluid" src="../../../assets/images/technologies.jpg" alt="tech store">

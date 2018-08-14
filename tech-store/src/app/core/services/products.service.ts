@@ -3,15 +3,22 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Product } from '../models/products/product.view.model';
 import { ProductInputModel } from '../models/products/product.input.model';
+import { AuthService } from './auth.service';
+import { ProductCartViewModel } from '../models/products/product-cart.view.model';
 
-const dbUrl = 'https://techstore-e9877.firebaseio.com/products/'
+const dbUrl = 'https://techstore-e9877.firebaseio.com/products/';
+const dbUrlCart = 'https://techstore-e9877.firebaseio.com/carts/';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  userProdIds;
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   getProducts() {
     return this.http.get(`${dbUrl}.json`)
@@ -108,4 +115,38 @@ export class ProductsService {
         return products;
       }));
   }
+
+  getBuyedProducts(userName: string) {
+    return this.http.get(`${dbUrlCart}${userName}.json`)
+      .pipe(map((res: Response) => {
+        const ids = Object.keys(res);
+        const products: ProductCartViewModel[] = [];
+        for (const i of ids) {
+          products.push(new ProductCartViewModel(
+            i,
+            res[i].name,
+            res[i].model,
+            res[i].image,
+            res[i].price,
+            res[i].count
+          ));
+        }
+
+        return products;
+      }));      
+  }
+
+  addProductInCart(userName: string, product : ProductCartViewModel) {
+    return this.http.post(`${dbUrlCart}${userName}.json`, product);
+  }
+
+  removeProductFromCart(userName: string, productId: string) {
+    return this.http.delete(`${dbUrlCart}${userName}/${productId}/.json`);
+  }
+
+  completeOrder(userName: string) {
+    return this.http.delete(`${dbUrlCart}${userName}/.json`);
+  }
+
+
 }

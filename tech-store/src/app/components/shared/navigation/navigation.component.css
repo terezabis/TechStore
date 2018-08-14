@@ -6,3 +6,8 @@ a.navbar-brand:link {
 .nav-item:hover {
     cursor: pointer;
 }
+
+#strange-line {
+    border-left: solid;
+    border-left-color: whitesmoke;
+}

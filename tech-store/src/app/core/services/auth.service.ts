@@ -89,11 +89,11 @@ export class AuthService {
 
 
   getUserNameFromEmail() {
-    let userEmail = firebase.auth().currentUser.email;
-    console.log(userEmail);
-    this.name = userEmail.substring(0, userEmail.lastIndexOf("@"));
-    console.log(this.name);
-    return this.name;
+    if (firebase.auth().currentUser) {
+      let userEmail = firebase.auth().currentUser.email;
+      this.name = userEmail.substring(0, userEmail.lastIndexOf("@"));
+      return this.name;
+    }
   }
 
 }

@@ -1,32 +1,32 @@
 <h1>All items</h1>
-<div class="row">
-  <div *ngFor="let product of products | async | paginate: {
+<div *ngIf="products">
+  <div class="row">
+    <div *ngFor="let product of products | async | paginate: {
     id: 'products',
     itemsPerPage: pageSize,
     currentPage: currentPage
   }" class="col-xs-12">
-    <div class="products-item list-group-item">
-      <span class="pull-right">
-        <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
-      </span>
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">{{product.name}}</h4>
-        <h6 class="list-group-item-heading">{{product.model}}</h6>
-      </div>
-      <div class="list-group-item prod-control">
-        <a routerLink="/products/details/{{product.id}}" class="clearfix">
-          <button class="action btn btn-info">Details</button>
-        </a>
-        <a routerLink="/products/buy/{{product.id}}" class="clearfix">
-          <button class="action btn btn-primary">Buy</button>
-        </a>
+      <div class="products-item list-group-item">
+        <span class="pull-right">
+          <img src="{{product.image}}" alt="{{product.name}}" class="img-responsive">
+        </span>
+        <div class="pull-left">
+          <h4 class="list-group-item-heading">{{product.name}}</h4>
+          <h6 class="list-group-item-heading">{{product.model}}</h6>
+        </div>
+        <div class="list-group-item prod-control">
+          <a routerLink="/products/details/{{product.id}}" class="clearfix">
+            <button class="action btn btn-info">Details</button>
+          </a>
+          <a (click)="buyProduct(product.id)">
+            <button class="action btn btn-primary">Buy</button>
+          </a>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<pagination-controls 
-id="products" 
-(pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true"
-  previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLAbel="page" screenReaderCurrentLabel="You're on page">
+  <pagination-controls id="products" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Previous"
+    nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLAbel="page" screenReaderCurrentLabel="You're on page">
 
-</pagination-controls>
+  </pagination-controls>
+</div>

@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../../../core/models/products/product.view.model';
 import { ProductsService } from './../../../core/services/products.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { ProductCartViewModel } from '../../../core/models/products/product-cart.view.model';
 
 
 @Component({
@@ -12,15 +14,18 @@ import { ProductsService } from './../../../core/services/products.service';
 })
 export class ProductsByCategoryComponent implements OnInit {
   products: Product[];
-  name : string;
+  name: string;
   pageSize: number = 8;
   currentPage: number = 1;
+  currUserName: string;
+  product: Product;
 
   constructor(
-    private productsService : ProductsService,
-    private route : ActivatedRoute,
-    private toastr : ToastrService,
-    private router : Router
+    private productsService: ProductsService,
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,6 +38,24 @@ export class ProductsByCategoryComponent implements OnInit {
 
   pageChanged(page) {
     this.currentPage = page;
+  }
+
+  buyProduct(id: string) {
+    this.currUserName = this.authService.getUserNameFromEmail();
+    this.productsService.getProductById(id)
+      .subscribe(data => {
+        this.productsService.addProductInCart(this.currUserName, new ProductCartViewModel(
+          id,
+          data.name,
+          data.model,
+          data.image,
+          data.price,
+          1
+        ))
+          .subscribe(() => {
+            this.toastr.success('Product added to cart!', ' Success');
+          });
+      });
   }
 
 }

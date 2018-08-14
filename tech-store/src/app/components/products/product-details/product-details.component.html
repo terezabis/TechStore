@@ -29,7 +29,7 @@
 
   <div class="row list-group-item prod-control">
     <div class="col-xs-12 offset-md-4 col-md-4">
-      <a routerLink="/products/buy/{{id}}">
+      <a (click)="buyProduct()">
         <button class="action btn btn-primary">Buy</button>
       </a>
       <span *ngIf="authService.isAuthenticated() && authService.isAdmin()">

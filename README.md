@@ -3,6 +3,22 @@ Web application - web store for Technique.
 Frond-end - Angular 6 and Bootstrap.
 Back-end - Firebase.
 
-The application has public part witch is accessible and visible without authentication.
-This part consists of the home page, sign in and sign up forms.
+Parts in Application
 
+Public part:
+- accessible and visible without authentication;
+- consists of home page (without greeting for user), sign in and sign up forms
+- everyone may register for free or login in the site if has account 
+
+Private part and User area:
+- all logged in users has access to pages with all categories, all products and product's details view
+- users may read information for products
+- each user may buy products
+- each user has his own cart with products added in
+- logged in user may add and remove products from his cart
+- user may finish his order and his cart become empty
+
+Administration part:
+- there is only one system administration
+- admin has private area for add new products in the store
+- admin can edit products and creade new ones

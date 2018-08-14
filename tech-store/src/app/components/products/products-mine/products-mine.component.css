@@ -1,0 +1,19 @@
+img {
+    height: 100px;
+    width: 100px;
+    padding: 3px;
+}
+
+a button {
+    margin: 2px;
+    cursor: pointer;
+    padding: 1px 5px 1px 5px !important;
+}
+
+
+.products-item {
+    display: inline-block;
+    margin: 5px;
+    width: 400px;
+    height: 300px;
+}
