@@ -28,6 +28,8 @@ export class ProductsMineComponent implements OnInit {
 
   ngOnInit() {
     this.products = this.productsService.getBuyedProducts(this.name);
+    console.log(this.products);
+    //this.products.subscribe(result => {console.log(result.length)})
   }
 
   pageChanged(page) {
@@ -37,7 +39,7 @@ export class ProductsMineComponent implements OnInit {
   removeProduct(productId) {
     this.productsService.removeProductFromCart(this.name, productId)
       .subscribe((data) => {
-        this.toastr.success('Product remove from cart!', 'Success!');
+        this.toastr.success('Product removed from cart!', 'Success!');
         this.ngOnInit();
       })
   }

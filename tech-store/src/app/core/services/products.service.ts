@@ -119,24 +119,28 @@ export class ProductsService {
   getBuyedProducts(userName: string) {
     return this.http.get(`${dbUrlCart}${userName}.json`)
       .pipe(map((res: Response) => {
-        const ids = Object.keys(res);
-        const products: ProductCartViewModel[] = [];
-        for (const i of ids) {
-          products.push(new ProductCartViewModel(
-            i,
-            res[i].name,
-            res[i].model,
-            res[i].image,
-            res[i].price,
-            res[i].count
-          ));
-        }
+        if (res != null) {
+          const ids = Object.keys(res);
+          const products: ProductCartViewModel[] = [];
+          for (const i of ids) {
+            products.push(new ProductCartViewModel(
+              i,
+              res[i].name,
+              res[i].model,
+              res[i].image,
+              res[i].price,
+              res[i].count
+            ));
+          }
 
-        return products;
-      }));      
+          return products;
+        } else {
+          return null;
+        }
+      }));
   }
 
-  addProductInCart(userName: string, product : ProductCartViewModel) {
+  addProductInCart(userName: string, product: ProductCartViewModel) {
     return this.http.post(`${dbUrlCart}${userName}.json`, product);
   }
 
