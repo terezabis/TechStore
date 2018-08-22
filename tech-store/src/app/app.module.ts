@@ -15,13 +15,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CategoriesComponent } from './components/categories/categories/categories.component';
 import { ButtonsModule } from './components/buttons/buttons.module';
+import { CategoryCreateComponent } from './components/categories/category-create/category-create.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,

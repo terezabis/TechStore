@@ -6,8 +6,10 @@ import { ProductInputModel } from '../models/products/product.input.model';
 import { AuthService } from './auth.service';
 import { ProductCartViewModel } from '../models/products/product-cart.view.model';
 
-const dbUrl = 'https://techstore-e9877.firebaseio.com/products/';
-const dbUrlCart = 'https://techstore-e9877.firebaseio.com/carts/';
+const dbUrl = 'https://techstore-e9877.firebaseio.com/';
+const dbUrlProducts = dbUrl + 'products/';
+const dbUrlCart = dbUrl + 'carts/';
+const dbUrlCategories = dbUrl + 'categories/'
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,7 @@ export class ProductsService {
   ) { }
 
   getProducts() {
-    return this.http.get(`${dbUrl}.json`)
+    return this.http.get(`${dbUrlProducts}.json`)
       .pipe(map((res: Response) => {
         const ids = Object.keys(res);
         const products: Product[] = [];
@@ -42,23 +44,23 @@ export class ProductsService {
   }
 
   getProductById(productId: string) {
-    return this.http.get<Product>(`${dbUrl}${productId}/.json`);
+    return this.http.get<Product>(`${dbUrlProducts}${productId}/.json`);
   }
 
   createProduct(body: ProductInputModel) {
-    return this.http.post(`${dbUrl}.json`, body);
+    return this.http.post(`${dbUrlProducts}.json`, body);
   }
 
   editProduct(body) {
-    return this.http.patch(`${dbUrl}.json`, body);
+    return this.http.patch(`${dbUrlProducts}.json`, body);
   }
 
   deleteProduct(productId: string) {
-    return this.http.delete(`${dbUrl}${productId}/.json`);
+    return this.http.delete(`${dbUrlProducts}${productId}/.json`);
   }
 
   searchProducts(query: string) {
-    return this.http.get(`${dbUrl}.json`)
+    return this.http.get(`${dbUrlProducts}.json`)
       .pipe(map((res: Response) => {
         const ids = Object.keys(res);
         const products: Product[] = [];
@@ -81,22 +83,10 @@ export class ProductsService {
       }));
   }
 
-  getCategories() {
-    return this.http.get(`${dbUrl}.json`)
-      .pipe(map((res: Response) => {
-        const ids = Object.keys(res);
-        const categories: string[] = [];
-        for (const i of ids) {
-          if (categories.indexOf(res[i].category) === -1) {
-            categories.push(res[i].category);
-          }
-        }
-        return categories;
-      }));
-  }
+  
 
   getProductsByCategory(categoryName: string) {
-    return this.http.get(`${dbUrl}.json`)
+    return this.http.get(`${dbUrlProducts}.json`)
       .pipe(map((res: Response) => {
         const ids = Object.keys(res);
         const products: Product[] = [];

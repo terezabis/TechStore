@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { CategoriesService } from '../../../core/services/categories.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -22,9 +23,11 @@ export class ProductEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private toastr: ToastrService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private categoriesService: CategoriesService
+
   ) {
-    this.categoryList = this.productsService.getCategories();
+    this.categoryList = this.categoriesService.getCategories();
   }
 
   ngOnInit() {

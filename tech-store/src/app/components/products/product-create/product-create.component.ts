@@ -4,6 +4,7 @@ import { Router } from '@angular/router'; import { ProductsService } from './../
 import { ProductInputModel } from './../../../core/models/products/product.input.model';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
+import { CategoriesService } from './../../../core/services/categories.service';
 
 @Component({
   selector: 'app-product-create',
@@ -12,17 +13,18 @@ import { Observable } from 'rxjs';
 })
 export class ProductCreateComponent implements OnInit {
   bindModel: ProductInputModel;
-  categoryList : Observable<any[]>;
+  categoryList: Observable<any[]>;
   categoryForm: FormGroup;
 
   constructor(
     private toastr: ToastrService,
     private router: Router,
     private productsService: ProductsService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private categoriesService: CategoriesService
   ) {
     this.bindModel = new ProductInputModel("", "", "", "", 0, "");
-    this.categoryList = this.productsService.getCategories();
+    this.categoryList = this.categoriesService.getCategories();
   }
 
   ngOnInit() {
