@@ -24,7 +24,7 @@ export class ProductsService {
   // get all products from database and return observable
   getProducts() {
     return this.http.get(`${dbUrlProducts}.json`)
-      // pipe takes an infinite amount of arguments and each argument is an operator which apply to the Observable
+      // 'pipe' takes an infinite amount of arguments and each argument is an operator which apply to the Observable
       .pipe(map((res: Response) => {
         const ids = Object.keys(res);
         const products: Product[] = [];
