@@ -16,19 +16,20 @@ export class CategoriesService {
     private authService: AuthService
   ) { }
 
-  createCategory(body: CategoryInputModel) {    
-      return this.http.post(`${dbUrl}.json`, body);
+  // create new category in database
+  createCategory(body: CategoryInputModel) {
+    return this.http.post(`${dbUrl}.json`, body);
   }
 
+  // get all categories from database
   getCategories() {
     return this.http.get(`${dbUrl}.json`)
       .pipe(map((res: Response) => {
         const ids = Object.keys(res);
         const categories: string[] = [];
         for (const i of ids) {
-          //if (categories.indexOf(res[i].category) === -1) {
-            categories.push(res[i].name);
-          //}
+          // add each category name in the created new array
+          categories.push(res[i].name);
         }
         return categories;
       }));

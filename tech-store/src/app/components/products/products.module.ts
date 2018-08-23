@@ -6,12 +6,12 @@ import { CustomFormsModule } from 'ng2-validation';
 import { productsComponent } from './index';
 import { ProductsRoutingModule } from "./products.routing";
 import { ButtonsModule } from './../buttons/buttons.module';
-import { ProductsMineComponent } from './products-mine/products-mine.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
     ...productsComponent,
-    ProductsMineComponent
+    ProductComponent
   ],
   imports: [
     CommonModule,

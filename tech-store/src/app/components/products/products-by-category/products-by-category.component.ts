@@ -26,20 +26,25 @@ export class ProductsByCategoryComponent implements OnInit {
     private route: ActivatedRoute,
     private toastr: ToastrService,
     private router: Router
-  ) { }
-
-  ngOnInit() {
+  ) { 
+    // property gets name of category which is in url params
     this.name = this.route.snapshot.params['name'];
+  }
+
+  ngOnInit() {    
+    // property gets lazy collection (Observable) with all products in a category
     this.productsService.getProductsByCategory(this.name)
       .subscribe(data => {
         this.products = data;
       })
   }
 
+  // pagination in the view
   pageChanged(page) {
     this.currentPage = page;
   }
 
+  // add product in current user's shoping cart
   buyProduct(id: string) {
     this.currUserName = this.authService.getUserNameFromEmail();
     this.productsService.getProductById(id)
@@ -53,6 +58,7 @@ export class ProductsByCategoryComponent implements OnInit {
           1
         ))
           .subscribe(() => {
+            // after successful product added in cart - get messege for success
             this.toastr.success('Product added to cart!', ' Success');
           });
       });

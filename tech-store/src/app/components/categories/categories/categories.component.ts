@@ -8,12 +8,14 @@ import { CategoriesService } from '../../../core/services/categories.service';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories : Observable<any[]>;
+  categories: Observable<any[]>;
+
   constructor(
     private categoriesService: CategoriesService
   ) { }
 
   ngOnInit() {
+    // property gets Observable with all categories
     this.categories = this.categoriesService.getCategories();
   }
 

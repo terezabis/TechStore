@@ -27,13 +27,16 @@ export class ProductsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // property gets lazy collection (Observable) with all products over time
     this.products = this.productsService.getProducts();
   }
 
+  // function for change pages
   pageChanged(page) {
     this.currentPage = page;
   }
 
+  // add product in current user's shoping cart
   buyProduct(id: string) {
     this.currUserName = this.authService.getUserNameFromEmail();
     this.productsService.getProductById(id)
@@ -44,15 +47,13 @@ export class ProductsComponent implements OnInit {
           data.model,
           data.image,
           data.price,
-          1
+          1 // count
         ))
           .subscribe(() => {
+            // after successful product added in cart - get messege for success
             this.toastr.success('Product added to cart!', ' Success');
           });
       });
-
-
-
   }
 
 }

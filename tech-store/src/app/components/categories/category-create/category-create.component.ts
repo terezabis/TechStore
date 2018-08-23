@@ -16,7 +16,7 @@ export class CategoryCreateComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private categoriesService: CategoriesService
-  ) { 
+  ) {
     this.bindModel = new CategoryInputModel("");
   }
 
@@ -24,9 +24,12 @@ export class CategoryCreateComponent implements OnInit {
   }
 
   createCat() {
+    // create new category with fields in submitted model
     this.categoriesService.createCategory(this.bindModel)
       .subscribe(() => {
+        // after successful category added - get messege for success
         this.toastr.success('Category created!', ' Success');
+        // redirect to page with all categories
         this.router.navigate(['/categories']);
       });
   }

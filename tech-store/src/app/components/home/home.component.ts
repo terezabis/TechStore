@@ -10,11 +10,13 @@ export class HomeComponent implements OnInit {
   userName: string;
 
   constructor(
-    private authService : AuthService
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
-    if(this.authService.isAuthenticated){
+    // check if there is loged in user
+    if (this.authService.isAuthenticated) {
+      // get user's first part of email for greeting on home page
       this.userName = this.authService.getUserNameFromEmail();
     }
   }

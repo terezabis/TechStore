@@ -13,9 +13,8 @@ const routes: Route[] = [
     { path: 'create', component: ProductCreateComponent },
     { path: 'details/:id', component: ProductDetailsComponent },
     { path: 'edit/:id', component: ProductEditComponent },
-    { path: 'search', component: ProductsSearchComponent},
-    { path: 'mine/:name', component: ProductsMineComponent},
-  
+    { path: 'search', component: ProductsSearchComponent },
+    { path: 'mine/:name', component: ProductsMineComponent }
 ]
 
 @NgModule({

@@ -1,5 +1,5 @@
 export class CategoryInputModel {
-    constructor(
-      public name : string
-    ) { }
-  }
+  constructor(
+    public name: string
+  ) { }
+}

@@ -24,19 +24,22 @@ export class ProductCreateComponent implements OnInit {
     private categoriesService: CategoriesService
   ) {
     this.bindModel = new ProductInputModel("", "", "", "", 0, "");
+    // property gets Observable with all categories
     this.categoryList = this.categoriesService.getCategories();
   }
 
   ngOnInit() {
-    this.categoryForm = this.fb.group({
-      categoryControl: ['Category']
-    });
+    // property for visualize options in dropdown list
+    this.categoryForm = this.fb.group({ categoryControl: ['Category'] });
   }
 
   createProd() {
+    // create new product with fields of submitted model
     this.productsService.createProduct(this.bindModel)
       .subscribe(() => {
+        // after successful product added - get messege for success
         this.toastr.success('Product created!', ' Success');
+        // redirect to page with all products
         this.router.navigate(['/products']);
       });
   }

@@ -9,7 +9,6 @@ import { SharedModule } from './components/shared/shared.module';
 import { AuthModule } from './components/authentication/auth.module';
 import { AppRoutingModule } from './app.routing';
 import { ProductsModule } from './components/products/products.module';
-
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';

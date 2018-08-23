@@ -4,6 +4,7 @@ import { ProductEditComponent } from "./product-edit/product-edit.component";
 import { ProductsComponent } from "./products/products.component";
 import { ProductsByCategoryComponent } from './products-by-category/products-by-category.component';
 import { ProductsSearchComponent } from "./products-search/products-search.component";
+import { ProductsMineComponent } from './products-mine/products-mine.component';
 
 export const productsComponent = [
     ProductCreateComponent,
@@ -11,5 +12,6 @@ export const productsComponent = [
     ProductEditComponent,
     ProductsComponent,
     ProductsByCategoryComponent,
-    ProductsSearchComponent
+    ProductsSearchComponent,
+    ProductsMineComponent
 ]

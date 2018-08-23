@@ -27,28 +27,32 @@ export class ProductEditComponent implements OnInit {
     private categoriesService: CategoriesService
 
   ) {
-    this.categoryList = this.categoriesService.getCategories();
+    // property gets id value from url params
+    this.id = this.route.snapshot.params['id'];    
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
+    // property gets lazy collection of all categories
+    this.categoryList = this.categoriesService.getCategories();
+    // gets product by id and added its values in submitting form fields
     this.productsService.getProductById(this.id)
       .subscribe((data) => {
         this.bindModel = data;
       });
-      this.categoryForm = this.fb.group({
-        categoryControl: ['Category']
-      });
+    // property for visualize options in dropdown list
+    this.categoryForm = this.fb.group({ categoryControl: ['Category'] });
   }
 
   editProd() {
-    const body = {
-      [this.id]: this.bindModel
-    }
+    // constant variable with values from submitted form 
+    const body = { [this.id]: this.bindModel }
 
+    // update product in database with submitted values 
     this.productsService.editProduct(body)
       .subscribe((data) => {
+        // after successful product updated - get messege for success
         this.toastr.success('Product edited!', 'Success!');
+        // redirect to page with all products
         this.router.navigate(['/products']);
       })
   }

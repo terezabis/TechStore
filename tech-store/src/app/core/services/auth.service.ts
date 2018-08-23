@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { SignUpInputModel } from '../models/authentication/signup.input.model';
 import { SignInInputModel } from '../models/authentication/signin.input.model';
 
+const adminUids = ["vvQOPft74OQyALxXMNRu8xwzVwW2"];
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +14,12 @@ export class AuthService {
   token: string;
   name: string;
 
-
   constructor(
     private toastr: ToastrService,
     private router: Router
   ) { }
 
+  // register new user
   signUp(body: SignUpInputModel) {
     firebase.auth()
       .createUserWithEmailAndPassword(body.email, body.password)
@@ -30,6 +32,7 @@ export class AuthService {
       });
   }
 
+  // sign in in application
   signIn(body: SignInInputModel) {
     firebase.auth()
       .signInWithEmailAndPassword(body.email, body.password)
@@ -49,6 +52,7 @@ export class AuthService {
       });
   }
 
+  // logout from the application
   logout() {
     firebase.auth().signOut()
       .then(() => {
@@ -58,6 +62,7 @@ export class AuthService {
       });
   }
 
+  // get token for authentication
   getToken() {
     firebase.auth()
       .currentUser
@@ -69,12 +74,13 @@ export class AuthService {
     return this.token;
   }
 
+  // check if user is loged in
   isAuthenticated(): boolean {
     return this.token != null;
   }
 
+  // check if loged in user is in role 'Admin'
   isAdmin() {
-    let adminUids = ["vvQOPft74OQyALxXMNRu8xwzVwW2"];
     if (firebase.auth().currentUser) {
       let currentUserUid = firebase.auth().currentUser.uid;
       if (adminUids.lastIndexOf(currentUserUid) !== -1) {
@@ -87,7 +93,7 @@ export class AuthService {
     }
   }
 
-
+  // get first part from current user's email
   getUserNameFromEmail() {
     if (firebase.auth().currentUser) {
       let userEmail = firebase.auth().currentUser.email;

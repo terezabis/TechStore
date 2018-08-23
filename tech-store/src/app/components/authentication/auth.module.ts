@@ -3,14 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { authenticationComponents } from './index';
 
-
 @NgModule({
   declarations: [
-   ...authenticationComponents
+    ...authenticationComponents
   ],
   imports: [
     CommonModule,
     FormsModule
   ]
 })
-export class AuthModule {  }
+export class AuthModule { }

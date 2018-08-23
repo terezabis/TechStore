@@ -7,7 +7,6 @@
         <button class="btn btn-primary" [disabled]="frm.invalid" type="submit">Search</button>        
       </div>
     </div>
-
   </div>
 </form>
 <div *ngIf="products">
@@ -29,9 +28,6 @@
         <div class="list-group-item prod-control">
           <a routerLink="/products/details/{{product.id}}" class="clearfix">
             <button class="action btn btn-info">Details</button>
-          </a>
-          <a routerLink="/products/buy/{{product.id}}" class="clearfix">
-            <button class="action btn btn-primary">Buy</button>
           </a>
         </div>
       </div>

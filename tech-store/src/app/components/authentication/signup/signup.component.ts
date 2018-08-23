@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service'
 import { SignUpInputModel } from '../../../core/models/authentication/signup.input.model';
 
@@ -9,9 +8,9 @@ import { SignUpInputModel } from '../../../core/models/authentication/signup.inp
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  model : SignUpInputModel;
+  model: SignUpInputModel;
 
-  constructor(private authService : AuthService) { 
+  constructor(private authService: AuthService) {
     this.model = new SignUpInputModel("", "");
   }
 
